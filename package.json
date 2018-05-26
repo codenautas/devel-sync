@@ -1,0 +1,11 @@
+{
+    "name": "devel-sync",
+    "description": "syncronyze while developing",
+    "version": "0.1.0",
+    "dependencies": {},
+    "devDependencies": {
+        "@types/fs-extra": "~5.0.2",
+        "@types/node": "~10.1.2",
+        "fs-extra": "~6.0.1"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "outDir": "lib",
+        "module": "none",
+        "target": "es2017",
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "lib": [ "es2015" ],
+        "noImplicitAny": true,
+        "alwaysStrict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
+        "noFallthroughCasesInSwitch": true
+    },
+    "include":[
+        "src"
+    ]
+}
