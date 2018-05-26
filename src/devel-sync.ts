@@ -23,7 +23,7 @@ function sync(){
     params.sources.forEach(function(pathOrObject){
         let {path, dest}=typeof pathOrObject === 'string'?{
             path:pathOrObject,
-            dest:''
+            dest:pathOrObject
         }:pathOrObject;
         var sourcePath=Path.join(params.rootSource,path);
         console.log('watching',path,dest?'(to:'+dest+')':'',sourcePath, Path.resolve(sourcePath))
