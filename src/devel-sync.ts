@@ -1,17 +1,7 @@
 import * as fs from "fs-extra"
 import * as Path from "path"
 
-var params={
-    rootSource:'..',
-    rootTarget:'..',
-    sources:[
-        {path:'types.d.ts/modules', dest:'@types'},
-        'backend-plus'
-    ],
-    targets:[
-        'bas-ope'
-    ]
-}
+import {params} from "./local-params"
 
 function copy(source:string,target:string):Promise<void>{
     console.log('COPY',source,target)
