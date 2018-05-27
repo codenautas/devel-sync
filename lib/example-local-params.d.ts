@@ -6,4 +6,5 @@ export declare var params: {
         dest: string;
     })[];
     targets: string[];
+    exclude: string[];
 };

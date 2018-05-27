@@ -10,5 +10,9 @@ export var params={
     targets:[
         'rel-enc',
         'meta-enc',
+    ],
+    exclude:[
+        '.',
+        'node_modules'
     ]
 }
