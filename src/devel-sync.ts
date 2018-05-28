@@ -3,12 +3,15 @@ import * as Path from "path"
 
 import {params} from "./local-params"
 
-function copy(source:string,target:string):Promise<void>{
+async function copy(source:string,target:string):Promise<void>{
     console.log('COPY',source,target)
-    return fs.copy(source,target,{recursive:true}).catch(function(err){
+    try{
+        await fs.copy(source,target,{recursive:true});
+        console.log('COPIED OK!',source,target)
+    }catch(err){
         console.log('ERROR copying',source,target)
         console.log(err);
-    })
+    }
 }
 
 var copyChain=Promise.resolve();
