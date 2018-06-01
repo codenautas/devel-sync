@@ -33,7 +33,7 @@ function sync(){
         fs.watch(sourcePath, {recursive:true}, function(event, fileName){
             console.log(new Date().toLocaleString(), event, fileName);
             params.targets.forEach(function(target){
-                if(!params.exclude.some(prefix=>fileName.startsWith(prefix))){
+                if(fileName && !params.exclude.some(prefix=>fileName.startsWith(prefix))){
                     addToCopyChain(Path.join(sourcePath,fileName),Path.join(params.rootTarget,target,'node_modules',dest,fileName))
                 }
             });

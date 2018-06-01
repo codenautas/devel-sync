@@ -3,7 +3,7 @@ export var params={
     rootSource:'..',
     rootTarget:'..',
     sources:[
-        {path:'types.d.ts/modules', dest:'@types'},
+        'types.d.ts/modules',
         'backend-plus',
         'bas-ope',
     ],
