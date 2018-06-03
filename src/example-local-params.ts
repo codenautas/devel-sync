@@ -8,6 +8,7 @@ export var params={
         'bas-ope',
     ],
     targets:[
+        'backend-plus',
         'rel-enc',
         'meta-enc',
     ],

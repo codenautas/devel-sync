@@ -7,5 +7,8 @@
         "@types/fs-extra": "~5.0.2",
         "@types/node": "~10.1.2",
         "fs-extra": "~6.0.1"
+    },
+    "scripts":{
+        "start": "node lib/devel-sync.js"
     }
 }
