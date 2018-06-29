@@ -34,7 +34,13 @@ function sync(){
             console.log(new Date().toLocaleString(), event, fileName);
             params.targets.forEach(function(target){
                 if(fileName && target!=pathOrObject && !params.exclude.some(prefix=>fileName.startsWith(prefix))){
-                    addToCopyChain(Path.join(sourcePath,fileName),Path.join(params.rootTarget,target,'node_modules',dest,fileName))
+                    var targetPath
+                    if(typeof target==="string"){
+                        targetPath=Path.join(params.rootTarget,target,'node_modules',dest,fileName)
+                    }else{
+                        targetPath=Path.join(target.absolute,'node_modules',dest,fileName);
+                    }
+                    addToCopyChain(Path.join(sourcePath,fileName),targetPath)
                 }
             });
         })
