@@ -66,4 +66,8 @@ sessions/
 
 *.bak
 
+lib/*.js
+lib/*.d.ts
+lib/*.js.map
+
 package-lock.json
