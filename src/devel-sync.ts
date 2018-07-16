@@ -3,6 +3,17 @@ import * as Path from "path"
 
 import {params} from "./local-params"
 
+type RelPathString = string;
+type PathInfo = RelPathString|{absolute:string};
+
+type Params = {
+    rootSource:RelPathString,
+    rootTarget:RelPathString,
+    sources:RelPathString[],
+    targets:PathInfo[],
+    exclude:RelPathString[]
+}
+
 async function copy(source:string,target:string):Promise<void>{
     console.log('COPY',source,target)
     try{
@@ -22,7 +33,7 @@ function addToCopyChain(source:string,target:string){
     });
 }
 
-function sync(){
+function sync(params:Params){
     params.sources.forEach(function(pathOrObject){
         let {path, dest}=typeof pathOrObject === 'string'?{
             path:pathOrObject,
@@ -47,4 +58,4 @@ function sync(){
     })
 }
 
-sync();
+sync(params);
