@@ -1,12 +1,12 @@
 {
     "name": "devel-sync",
     "description": "syncronyze while developing",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "dependencies": {},
     "devDependencies": {
-        "@types/fs-extra": "~5.0.4",
-        "@types/node": "~10.11.4",
-        "fs-extra": "~7.0.0"
+        "@types/fs-extra": "~5.0.5",
+        "@types/node": "~11.11.3",
+        "fs-extra": "~7.0.1"
     },
     "scripts": {
         "start": "node lib/devel-sync.js"
