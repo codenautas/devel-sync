@@ -45,7 +45,7 @@ function sync(params:Params){
             dest= Path.join(dest, 'dist');
         }
         console.log('watching',path,dest?'(to:'+dest+')':'',sourcePath, Path.resolve(sourcePath))
-        fs.watch(sourcePath, {recursive:true}, function(event, fileName){
+        fs.watch(sourcePath, {recursive:true}, function(_event, fileName){
             // console.log(new Date().toLocaleString(), event, fileName);
             params.targets.forEach(function(target){
                 if(fileName && target!=pathOrObject && !params.exclude.some(prefix=>fileName.startsWith(prefix))){
