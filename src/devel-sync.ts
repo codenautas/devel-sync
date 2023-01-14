@@ -1,7 +1,9 @@
-import * as fs from "fs-extra"
+import * as fs from "fs/promises"
 import * as Path from "path"
 
 import {params} from "./local-params"
+
+import { expected } from "cast-error"
 
 type RelPathString = string;
 type PathInfo = RelPathString|{absolute:string};
@@ -17,7 +19,7 @@ type Params = {
 async function copy(source:string,target:string):Promise<void>{
     console.log('COPY',source,target)
     try{
-        await fs.copy(source,target,{recursive:true});
+        await fs.cp(source,target,{recursive:true});
         console.log('COPIED OK!',source,target)
     }catch(err){
         console.log('ERROR copying',source,target)
@@ -27,9 +29,24 @@ async function copy(source:string,target:string):Promise<void>{
 
 var copyChain=Promise.resolve();
 
+var pendingTasks = [] as {source:string, target:string}[]
+
+function sleep(ms:number) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+}
+
 function addToCopyChain(source:string,target:string){
-    copyChain=copyChain.then(function(){
-        return copy(source,target)
+    if (!pendingTasks.find(p => p.source == source && p.target == target)) {
+        pendingTasks.push({source, target})
+    }
+    copyChain=copyChain.then(async function(){
+        await sleep(100);
+        while (pendingTasks.length) {
+            const {source, target} = pendingTasks.shift();
+            await copy(source,target)    
+        }
     });
 }
 
@@ -40,21 +57,30 @@ function sync(params:Params){
             dest:pathOrObject
         }:pathOrObject;
         var sourcePath=Path.join(params.rootSource,path);
-        if(await fs.pathExists(Path.join(sourcePath,'dist'))){
+        try {
+            await fs.access(Path.join(sourcePath,'dist'));
+            // No access, all ok!
             sourcePath = Path.join(sourcePath, 'dist');
             dest= Path.join(dest, 'dist');
+        } catch(err) {
+            var error = expected(err)
+            if (error.code != 'ENOENT') {
+                throw err
+            }
         }
         console.log('watching',path,dest?'(to:'+dest+')':'',sourcePath, Path.resolve(sourcePath))
-        fs.watch(sourcePath, {recursive:true}, function(_event, fileName){
-            // console.log(new Date().toLocaleString(), event, fileName);
+        const watcher = fs.watch(sourcePath, {recursive:true})
+        for await (const event of watcher){
+            const {filename} = event;
+            console.log(new Date().toLocaleString(), event);
             params.targets.forEach(function(target){
-                if(fileName && target!=pathOrObject && !params.exclude.some(prefix=>fileName.startsWith(prefix))){
+                if(filename && target!=pathOrObject && !params.exclude.some(prefix=>filename.startsWith(prefix))){
                     var targetPath = typeof target==="string"?Path.join(params.rootTarget,target):target.absolute;
-                    targetPath = Path.join(targetPath, 'node_modules', dest, fileName);
-                    addToCopyChain(Path.join(sourcePath,fileName),targetPath)
+                    targetPath = Path.join(targetPath, 'node_modules', dest, filename);
+                    addToCopyChain(Path.join(sourcePath,filename),targetPath)
                 }
             });
-        })
+        }
     })
 }
 

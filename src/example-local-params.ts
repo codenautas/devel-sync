@@ -14,6 +14,7 @@ export var params={
     ],
     exclude:[
         '.',
+        '.git',
         'node_modules'
     ]
 }

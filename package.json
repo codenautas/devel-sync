@@ -1,12 +1,12 @@
 {
     "name": "devel-sync",
     "description": "syncronyze while developing",
-    "version": "0.1.3",
+    "version": "0.2.0",
     "devDependencies": {
-        "@types/fs-extra": "~9.0.13",
-        "@types/node": "~16.10.2",
-        "fs-extra": "~10.0.0",
-        "typescript": "^4.4.3"
+        "@types/fs-extra": "~11.0.1",
+        "@types/node": "~18.11.18",
+        "cast-error": "^0.1.0",
+        "typescript": "^4.9.4"
     },
     "scripts": {
         "prepare": "tsc",
