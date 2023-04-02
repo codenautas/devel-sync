@@ -9,7 +9,6 @@
         "typescript": "^4.9.4"
     },
     "scripts": {
-        "prepare": "tsc",
-        "start": "node lib/devel-sync.js"
+        "start": "tsc && node lib/devel-sync.js"
     }
 }
