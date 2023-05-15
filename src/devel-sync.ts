@@ -11,7 +11,7 @@ type PathInfo = RelPathString|{absolute:string};
 type Params = {
     rootSource:RelPathString,
     rootTarget:RelPathString,
-    sources:RelPathString[],
+    sources:(RelPathString|{path:RelPathString, dest:RelPathString})[],
     targets:PathInfo[],
     exclude:RelPathString[]
 }
