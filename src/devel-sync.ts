@@ -5,6 +5,8 @@ import {params} from "./local-params"
 
 import { expected } from "cast-error"
 
+import * as bestGlobals from "best-globals"
+
 type RelPathString = string;
 type PathInfo = RelPathString|{absolute:string};
 
@@ -17,7 +19,8 @@ type Params = {
 }
 
 async function copy(source:string,target:string):Promise<void>{
-    console.log('COPY',source,target)
+    if (source == target) return;
+    console.log('COPY',bestGlobals.datetime.now().toHm(), source,target)
     try{
         await fs.cp(source,target,{recursive:true});
         console.log('COPIED OK!',source,target)
@@ -74,6 +77,7 @@ function sync(params:Params){
             const {filename} = event;
             console.log(new Date().toLocaleString(), event);
             params.targets.forEach(function(target){
+                if (path == target) return;
                 if(filename && target!=pathOrObject && !params.exclude.some(prefix=>filename.startsWith(prefix))){
                     var targetPath = typeof target==="string"?Path.join(params.rootTarget,target):target.absolute;
                     targetPath = Path.join(targetPath, 'node_modules', dest, filename);

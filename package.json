@@ -2,6 +2,9 @@
     "name": "devel-sync",
     "description": "syncronyze while developing",
     "version": "0.2.0",
+    "dependencies": {
+        "best-globals": "^2.0.1"
+    },
     "devDependencies": {
         "@types/fs-extra": "~11.0.1",
         "@types/node": "~18.11.18",
