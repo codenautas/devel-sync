@@ -2,10 +2,14 @@
 <!--lang:es-->
 sincronización de directorios durante el desarrollo
 <!--lang:en--]
-syncronyze while developing 
+syncronyze while developing
 [!--lang:*-->
 
 <!--multilang v0 es:LEEME.md en:README.md -->
+
+<!-- cucardas -->
+[![build](https://github.com/codenautas/devel-sync/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/codenautas/devel-sync/actions/workflows/build-and-test.yml)
+[![qa-control](https://github.com/codenautas/devel-sync/actions/workflows/qa-control.yml/badge.svg)](https://github.com/codenautas/devel-sync/actions/workflows/qa-control.yml)
 
 <!--multilang buttons-->
 
@@ -17,7 +21,7 @@ también disponible en:
 
 ## Objetivo
 
-Tener una alternativa a `npm link` para desarrollar dos o más módulos dependientes simultánemente. 
+Tener una alternativa a `npm link` para desarrollar dos o más módulos dependientes simultánemente.
 
 
 
@@ -25,6 +29,6 @@ Tener una alternativa a `npm link` para desarrollar dos o más módulos dependie
 
 ## Goal
 
-An alterantive way to `npm link` that syncs *source dirs* into `node_modules` of others repos. 
+An alterantive way to `npm link` that syncs *source dirs* into `node_modules` of others repos.
 
 [!--lang:*-->

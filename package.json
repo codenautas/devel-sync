@@ -2,16 +2,31 @@
     "name": "devel-sync",
     "description": "syncronyze while developing",
     "version": "0.2.0",
+    "repository": "codenautas/devel-sync",
+    "private": true,
+    "files":[],
+    "main":"lib/devel-sync.js",
     "dependencies": {
-        "best-globals": "^2.0.1"
+        "best-globals": "^2.2.3"
     },
     "devDependencies": {
-        "@types/fs-extra": "~11.0.1",
-        "@types/node": "~18.11.18",
-        "cast-error": "^0.1.0",
-        "typescript": "^4.9.4"
+        "@types/fs-extra": "~11.0.4",
+        "@types/node": "~26.6.5",
+        "cast-error": "^0.1.6",
+        "qa-control": "^0.12.2",
+        "typescript": "^5.9.3"
     },
     "scripts": {
-        "start": "tsc && node lib/devel-sync.js"
+        "start": "tsc && node lib/devel-sync.js",
+        "test": "rem sin tests aun",
+        "test-ci": "rem sin tests aun"
+    },
+    "qa-control": {
+        "run-in": "server",
+        "type": "cmd-tool",
+        "gha": "no",
+        "silenced": [
+            "eslint_warnings_in_file_1"
+        ]
     }
 }
