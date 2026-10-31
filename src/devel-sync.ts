@@ -3,8 +3,6 @@ import * as Path from "path"
 
 import {params} from "./local-params"
 
-import { expected } from "cast-error"
-
 import * as bestGlobals from "best-globals"
 
 type RelPathString = string;
@@ -60,17 +58,17 @@ function sync(params:Params){
             dest:pathOrObject
         }:pathOrObject;
         var sourcePath=Path.join(params.rootSource,path);
-        try {
-            await fs.access(Path.join(sourcePath,'dist'));
-            // No access, all ok!
-            sourcePath = Path.join(sourcePath, 'dist');
-            dest= Path.join(dest, 'dist');
-        } catch(err) {
-            var error = expected(err)
-            if (error.code != 'ENOENT') {
-                throw err
-            }
-        }
+        // try {
+        //     await fs.access(Path.join(sourcePath,'dist'));
+        //     // No access, all ok!
+        //     sourcePath = Path.join(sourcePath, 'dist');
+        //     dest= Path.join(dest, 'dist');
+        // } catch(err) {
+        //     var error = expected(err)
+        //     if (error.code != 'ENOENT') {
+        //         throw err
+        //     }
+        // }
         console.log('watching',path,dest?'(to:'+dest+')':'',sourcePath, Path.resolve(sourcePath))
         const watcher = fs.watch(sourcePath, {recursive:true})
         for await (const event of watcher){

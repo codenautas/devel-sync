@@ -17,7 +17,7 @@
         "typescript": "^5.9.3"
     },
     "scripts": {
-        "start": "tsc && node lib/devel-sync.js",
+        "start": "tsc && call node lib/devel-sync.js",
         "test": "rem sin tests aun",
         "test-ci": "rem sin tests aun"
     },
